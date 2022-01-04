@@ -14,3 +14,6 @@ ESP-IDF
 ESP32-DevKitC-32E(4MB) (https://akizukidenshi.com/catalog/g/gM-15673/)  
 YMF288変換基板 (https://gimic.jp/index.php?GMC-MOD01%E8%AA%AC%E6%98%8E)  
 MicroSD用コネクタ変換基板 CK-40 (https://www.sunhayato.co.jp/material2/ucb08/item_490)  
+
+# 課題
+2022/01/04 ソースのリファクタリング
