@@ -1,7 +1,7 @@
-S98Player in ESP32 with YMF288.
+S98Player in ESP32 with YMF288.  
 README.md is written by Japanese.
 
-ようこそ。
+ようこそ。  
 YMF288を使ったESP32(ESP-WROOM-32E)用 S98プレイヤーのプロジェクトです。  
 機能の解説及び進捗状況はここに追記していきます。 
 
