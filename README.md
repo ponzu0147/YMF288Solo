@@ -1,1 +1,3 @@
-test
+S98Player in ESP32 with YMF288.
+
+Now Printing...
