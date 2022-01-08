@@ -16,7 +16,7 @@
 #include "esp_timer.h"
 #include "esp_log.h"
 #include "esp_sleep.h"
-	#include "sdkconfig.h"
+#include "sdkconfig.h"
 
 #include <stdlib.h>
 #include "driver/gpio.h"
