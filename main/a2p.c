@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 int delta_n = 127;
 int delta_x = 0;
@@ -39,12 +38,12 @@ int get_deltan(int cc, int ddelta_n){
     } else if ( nplus > 24576){
         nplus = 24576;
     }
-
+    delta_n = nplus;
     return nplus;
 }
 
 int get_x(int _data, int _delta_x, int _delta_n){
-    int c = _data;
+    u_int8_t c = _data;
     int d;
     //int x;
     int n;
@@ -63,18 +62,18 @@ int get_x(int _data, int _delta_x, int _delta_n){
     printf("(delta_n: %05d) ",delta_n);
     parts_x= (1 - 2 * bit[3]) * (8*bit[2] + 4*(bit[1]) + 2*(bit[0]) + 1) * delta_n;
     if( bit[3] == 1 ){
-        parts_x = ( parts_x >> 3 ) + 1;
+        parts_x = (parts_x >> 3) +1;
     } else {
         parts_x = parts_x >> 3;
     }
     x = parts_x + _delta_x;
 
-/*    if (x < 0){
+    if (x < 0){
         d = x;
         x = d ^ 0xffffffff;
         x = x + 1;
         }
-*/
+
     printf("x= %03d ", x);
     return x; // Xn+1
 }
@@ -84,8 +83,8 @@ void main(void){
     int c;
     int ch,cl;
     int num = 0;
-    fp=fopen("1.pcm","rb");
-    pp=fopen("1.pc8","wb");
+    fp=fopen("12.pcm","rb");
+    pp=fopen("12.pc8","wb");
 
     while(1){
         c = fgetc(fp);
