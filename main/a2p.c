@@ -11,17 +11,16 @@ const int mode_f[] = {
     57,57,57,57,77,102,128,153
 };
 
+// BigEndian to LitteleEndian
 int xcg_int(int _a){
     int a = _a;
     int ret=0;
     ret = a>>8;
     int ret2=0;
     ret2 = (a & 0xff); 
+    a = ret + (ret2<<8);
 
-    int ret3;
-    ret3 = ret + (ret2<<8);
-
-    return ret3;
+    return a;
 }
 
 int get_deltan(int cc, int ddelta_n){
