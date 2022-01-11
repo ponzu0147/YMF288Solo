@@ -13,8 +13,9 @@ ESP-IDF
 
 # 使用ハード
 ESP32-DevKitC-32E(4MB) (https://akizukidenshi.com/catalog/g/gM-15673/)  
-YMF288変換基板 (https://gimic.jp/index.php?GMC-MOD01%E8%AA%AC%E6%98%8E)  
+YMF288変換基板 GMC-MOD01 (https://gimic.jp/index.php?GMC-MOD01%E8%AA%AC%E6%98%8E)  
 MicroSD用コネクタ変換基板 CK-40 (https://www.sunhayato.co.jp/material2/ucb08/item_490)  
+ハイレゾリューションオーディオDACモジュール MM-5102 (https://www.sunhayato.co.jp/material2/ett09/item_765)
 
 # 機能
 ### S98ファイルの再生
@@ -62,7 +63,7 @@ SSGボリュームを簡易的に調整する機能を付与しています。
 
 # 現在の課題
 2022/01/04 ソースのリファクタリング  
+2022/01/09 ADPCM演奏  
 2022/xx/xx チャタリング対策・最適化  
-2022/xx/xx ADPCM演奏  
 2022/xx/xx リストファイルの初期化・保存  
 2022/xx/xx 試作基板作成
