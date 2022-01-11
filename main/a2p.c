@@ -1,3 +1,9 @@
+/*
+    a2p.c programmed by ponzu0147
+    input :  4bit OPNA ADPCM
+    output: 16bit PCM (h,l)
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,7 +22,7 @@ int xcg_int(int _a){
     int a = _a;
     int ret = 0;
     ret = a >> 8;
-    int ret2 = 0 ;
+    int ret2 = 0;
     ret2 = (a & 0xff); 
     a = ret + (ret2 << 8);
     return a;
@@ -63,6 +69,7 @@ int get_x(int _data, int _delta_x, int _delta_n){
     }
     x = parts_x + _delta_x;
 
+    // 2's complement
     if (x < 0){
         d = x;
         x = d ^ 0xffffffff;
@@ -77,7 +84,7 @@ void main(void){
     FILE *fp, *pp;
     int c;
     int ch,cl;
-    int num = 0;
+    //int num = 0;
     fp=fopen("12.pcm","rb");
     pp=fopen("12.pc8","wb");
 
@@ -100,7 +107,7 @@ void main(void){
         fwrite(&x2_xcg, 2, 1, pp);
         
         delta_x = delta_x2;
-        num++;
+        //num++;
     }
     fclose(pp);
     fclose(fp);
