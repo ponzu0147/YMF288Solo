@@ -722,9 +722,11 @@ int S98_read(char* s98file) {
 					break;
                 } else if (p_flag == true){ // 曲の先頭に戻る
 					reset();
-					vTaskDelay(pdMS_TO_TICKS(150));
+					vTaskDelay(pdMS_TO_TICKS(300));
                     fseek(fp, data_offset, SEEK_SET);
 					loop_count = 3;
+					printf("loop count: 3\n");
+					printf("restart music.\n");
 					p_flag = false;
                 } else if (r_flag == true){
 					dt = 0xfd; // done.
