@@ -1074,7 +1074,7 @@ void s98file_check(void){
 
                         // FILE *fp;
                         char* cp = NULL;
-                        cp = cat_path_file(str1, entry->d_name);
+                        cp = cat_path_file(MOUNT_POINT, entry->d_name);
                         //ESP_LOGI(TAG, "Reading %s", cp);
                         printf("%s\n",cp);
                         fprintf(f, "%s\n", cp);
