@@ -287,30 +287,28 @@ int fglen(int *len, const char *fname)
 
 void reset() {
     //YMF288 D0-D7
-    gpio_set_direction(GPIO_NUM_33, GPIO_MODE_OUTPUT);
-    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_4, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_16, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_17, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_18, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_19, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_21, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_NUM_22, GPIO_MODE_OUTPUT);
 
-    gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT); // A0_
-    gpio_set_direction(GPIO_NUM_26, GPIO_MODE_OUTPUT); // A1_
-    gpio_set_direction(GPIO_NUM_23, GPIO_MODE_OUTPUT); // WR
-    gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT); // CS
-    gpio_set_direction(GPIO_NUM_22, GPIO_MODE_OUTPUT); // RST
+    gpio_set_direction(GPIO_NUM_26, GPIO_MODE_OUTPUT); // A0_
+    gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT); // A1_
+    gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT); // CS
+    gpio_set_direction(GPIO_NUM_33, GPIO_MODE_OUTPUT); // RST
 
 	gpio_set_direction(GPIO_NUM_34, GPIO_MODE_INPUT); // 3 buttons
 
-    gpio_set_level(GPIO_NUM_23, HIGH);
-    gpio_set_level(GPIO_NUM_27, HIGH);
+    gpio_set_level(GPIO_NUM_33, HIGH); // CS
 
 
-    gpio_set_level(GPIO_NUM_22, LOW);
+    gpio_set_level(GPIO_NUM_22, LOW); // RST 
     ets_delay_us(1000);
-    gpio_set_level(GPIO_NUM_22, HIGH);
+    gpio_set_level(GPIO_NUM_22, HIGH); // RST
     ets_delay_us(1000);
 
 }
@@ -319,89 +317,89 @@ void write_data(unsigned char dat) {
     u_int32_t pin_set[8];
     /*
     char* pin_name[] = {
-        "GPIO_PIN_33",
-        "GPIO_PIN_5",
         "GPIO_PIN_4",
         "GPIO_PIN_16",
         "GPIO_PIN_17",
+        "GPIO_PIN_5",
         "GPIO_PIN_18",
         "GPIO_PIN_19",
-        "GPIO_PIN_21"
+        "GPIO_PIN_21",
+        "GPIO_PIN_22"
     };*/
      for ( int i=7; i >= 0; i-- ){
         pin_set[i] = (dat >> i ) & 1;
      }
         if (pin_set[0]) {
-            GPIO.out1_w1ts.val = (1 << 1);
-        } else {
-            GPIO.out1_w1tc.val = (1 << 1);
-        }
-        if (pin_set[1]) {
-            GPIO.out_w1ts = (1 << 5);
-        } else {
-            GPIO.out_w1tc = (1 << 5);
-        }
-        if (pin_set[2]) {
             GPIO.out_w1ts = (1 << 4);
         } else {
             GPIO.out_w1tc = (1 << 4);
         }
-        if (pin_set[3]) {
+        if (pin_set[1]) {
             GPIO.out_w1ts = (1 << 16);
         } else {
             GPIO.out_w1tc = (1 << 16);
         }
-        if (pin_set[4]) {
+        if (pin_set[2]) {
             GPIO.out_w1ts = (1 << 17);
         } else {
             GPIO.out_w1tc = (1 << 17);
         }
-        if (pin_set[5]) {
+        if (pin_set[3]) {
+            GPIO.out_w1ts = (1 << 5);
+        } else {
+            GPIO.out_w1tc = (1 << 5);
+        }
+        if (pin_set[4]) {
             GPIO.out_w1ts = (1 << 18);
         } else {
             GPIO.out_w1tc = (1 << 18);
         }
-        if (pin_set[6]) {
+        if (pin_set[5]) {
             GPIO.out_w1ts = (1 << 19);
         } else {
             GPIO.out_w1tc = (1 << 19);
         }
-        if (pin_set[7]) {
+        if (pin_set[6]) {
             GPIO.out_w1ts = (1 << 21);
         } else {
             GPIO.out_w1tc = (1 << 21);
         }
+        if (pin_set[7]) {
+            GPIO.out_w1ts = (1 << 22);
+        } else {
+            GPIO.out_w1tc = (1 << 22);
+        }
 
 /*
-    gpio_set_level( GPIO_NUM_33, pin_set[0] );
-    gpio_set_level( GPIO_NUM_5, pin_set[1] );
-    gpio_set_level( GPIO_NUM_4, pin_set[2] );
-    gpio_set_level( GPIO_NUM_16, pin_set[3] );
-    gpio_set_level( GPIO_NUM_17, pin_set[4] );
-    gpio_set_level( GPIO_NUM_18, pin_set[5] );
-    gpio_set_level( GPIO_NUM_19, pin_set[6] );
-    gpio_set_level( GPIO_NUM_21, pin_set[7] );
+    gpio_set_level( GPIO_NUM_4, pin_set[0] );
+    gpio_set_level( GPIO_NUM_16, pin_set[1] );
+    gpio_set_level( GPIO_NUM_17, pin_set[2] );
+    gpio_set_level( GPIO_NUM_5, pin_set[3] );
+    gpio_set_level( GPIO_NUM_18, pin_set[4] );
+    gpio_set_level( GPIO_NUM_19, pin_set[5] );
+    gpio_set_level( GPIO_NUM_21, pin_set[6] );
+    gpio_set_level( GPIO_NUM_22, pin_set[7] );
 */    
 }
 
 void law_write(unsigned char ifadr, unsigned char adr, unsigned char dat) {
-    gpio_set_level(GPIO_NUM_25, LOW);       // A0=LOW
+    gpio_set_level(GPIO_NUM_26, LOW);       // A0=LOW
     if (ifadr) {
-        gpio_set_level(GPIO_NUM_26, HIGH);  // A1=HIGH
+        gpio_set_level(GPIO_NUM_27, HIGH);  // A1=HIGH
     } else {
-        gpio_set_level(GPIO_NUM_26, LOW);   // A1=LOW
+        gpio_set_level(GPIO_NUM_27, LOW);   // A1=LOW
     }
     write_data(adr);                  		// Address set
-    gpio_set_level(GPIO_NUM_27, LOW);       // CS=LOW
+    gpio_set_level(GPIO_NUM_25, LOW);       // CS=LOW
     ets_delay_us(2);
-    gpio_set_level(GPIO_NUM_27, HIGH);      // CS=HIGH
+    gpio_set_level(GPIO_NUM_25, HIGH);      // CS=HIGH
     ets_delay_us(1);
 
-    gpio_set_level(GPIO_NUM_25, HIGH);      // A0=HIGH
+    gpio_set_level(GPIO_NUM_26, HIGH);      // A0=HIGH
     write_data(dat);                  		// Data set
-    gpio_set_level(GPIO_NUM_27, LOW);       // CS
+    gpio_set_level(GPIO_NUM_25, LOW);       // CS
     ets_delay_us(2);
-    gpio_set_level(GPIO_NUM_27, HIGH);      // CS
+    gpio_set_level(GPIO_NUM_25, HIGH);      // CS
     //ets_delay_us(1);
 }
 
