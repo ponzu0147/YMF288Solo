@@ -64,9 +64,9 @@ SSGボリュームを簡易的に調整する機能を付与しています。
 # 参考資料・謝辞(敬称略)
 YM2608 OPNA アプリケーションマニュアル (c)YAMAHA  
 YAMAHA LSI Data Book より YMF288 (c)YAMAHA  
-s98dmp.c ソースファイル より s98フォーマット解析 Thanks for [@ume3fmp](https://twitter.com/ume3fmp/)  
-ADPCM->PCM 変換ルーチン等 プログラム指南 Thanks for [@unn4m3cl](https://twitter.com/unn4m3cl/)  
-[DAC出力フォーマット](https://github.com/osafune/fm_test_siggen/blob/master/doc/fmdac_output_format.pdf) Thanks for [@s_osafune](https://twitter.com/s_osafune/)  
+s98dmp.c ソースファイル より s98フォーマット解析(Thanks for [@ume3fmp](https://twitter.com/ume3fmp/))  
+ADPCM->PCM 変換ルーチン等 プログラム指南(Thanks for [@unn4m3cl](https://twitter.com/unn4m3cl/))  
+[DAC出力フォーマット](https://github.com/osafune/fm_test_siggen/blob/master/doc/fmdac_output_format.pdf)(Thanks for [@s_osafune](https://twitter.com/s_osafune/))  
 
 # 現在の課題(着手日)
 2022/01/04 ソースのリファクタリング  
