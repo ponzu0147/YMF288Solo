@@ -66,7 +66,7 @@ YM2608 OPNA アプリケーションマニュアル (c)YAMAHA
 YAMAHA LSI Data Book より YMF288 (c)YAMAHA  
 s98dmp.c ソースファイル より s98フォーマット解析 Thanks for @ume3fmp  
 ADPCM->PCM 変換ルーチン等 プログラム指南 Thanks for @unn4m3cl  
-DAC出力フォーマット (https://github.com/osafune/fm_test_siggen/blob/master/doc/fmdac_output_format.pdf) Thanks for @s_osafune  
+[DAC出力フォーマット](https://github.com/osafune/fm_test_siggen/blob/master/doc/fmdac_output_format.pdf) Thanks for @s_osafune  
 
 # 現在の課題(着手日)
 2022/01/04 ソースのリファクタリング  
