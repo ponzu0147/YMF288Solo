@@ -296,9 +296,9 @@ void reset() {
     gpio_set_direction(GPIO_NUM_21, GPIO_MODE_OUTPUT);
     gpio_set_direction(GPIO_NUM_22, GPIO_MODE_OUTPUT);
 
-    gpio_set_direction(GPIO_NUM_26, GPIO_MODE_OUTPUT); // A0_
-    gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT); // A1_
-    gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT); // CS
+    gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT); // A0_
+    gpio_set_direction(GPIO_NUM_26, GPIO_MODE_OUTPUT); // A1_
+    gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT); // CS
     gpio_set_direction(GPIO_NUM_33, GPIO_MODE_OUTPUT); // RST
 
 	gpio_set_direction(GPIO_NUM_34, GPIO_MODE_INPUT); // 3 buttons
@@ -383,23 +383,23 @@ void write_data(unsigned char dat) {
 }
 
 void law_write(unsigned char ifadr, unsigned char adr, unsigned char dat) {
-    gpio_set_level(GPIO_NUM_26, LOW);       // A0=LOW
+    gpio_set_level(GPIO_NUM_25, LOW);       // A0=LOW
     if (ifadr) {
-        gpio_set_level(GPIO_NUM_27, HIGH);  // A1=HIGH
+        gpio_set_level(GPIO_NUM_26, HIGH);  // A1=HIGH
     } else {
-        gpio_set_level(GPIO_NUM_27, LOW);   // A1=LOW
+        gpio_set_level(GPIO_NUM_26, LOW);   // A1=LOW
     }
     write_data(adr);                  		// Address set
-    gpio_set_level(GPIO_NUM_25, LOW);       // CS=LOW
+    gpio_set_level(GPIO_NUM_27, LOW);       // CS=LOW
     ets_delay_us(2);
-    gpio_set_level(GPIO_NUM_25, HIGH);      // CS=HIGH
+    gpio_set_level(GPIO_NUM_27, HIGH);      // CS=HIGH
     ets_delay_us(1);
 
-    gpio_set_level(GPIO_NUM_26, HIGH);      // A0=HIGH
+    gpio_set_level(GPIO_NUM_25, HIGH);      // A0=HIGH
     write_data(dat);                  		// Data set
-    gpio_set_level(GPIO_NUM_25, LOW);       // CS
+    gpio_set_level(GPIO_NUM_27, LOW);       // CS
     ets_delay_us(2);
-    gpio_set_level(GPIO_NUM_25, HIGH);      // CS
+    gpio_set_level(GPIO_NUM_27, HIGH);      // CS
     //ets_delay_us(1);
 }
 
