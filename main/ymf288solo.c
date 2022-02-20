@@ -716,11 +716,11 @@ int S98_read(char* s98file) {
                     loop_count = 1;
                     f_flag = false;
 					s_flag = true;
-        			vTaskDelay(pdMS_TO_TICKS(450));
+        			vTaskDelay(pdMS_TO_TICKS(650));
 					break;
                 } else if (p_flag == true){ // 曲の先頭に戻る
 					reset();
-					vTaskDelay(pdMS_TO_TICKS(300));
+					vTaskDelay(pdMS_TO_TICKS(650));
                     fseek(fp, data_offset, SEEK_SET);
 					loop_count = 3;
 					printf("loop count: 3\n");
@@ -914,15 +914,15 @@ void key_check(void* arg) {
     adc_reading /= NO_OF_SAMPLES;
     //Convert adc_reading to voltage in mV
     // uint32_t voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
-    if((int)adc_reading<200){
+    if((int)adc_reading<2000){
         printf("button 1\n");
         adc_reading=4095;
         f_flag = true;
-    } else if(adc_reading<2000) {
-        printf("button 2\n");
+    } else if(adc_reading<2800) {
+		printf("button 2\n");
         adc_reading=4095;
         p_flag = true;
-    } else if(adc_reading<2700) {
+    } else if(adc_reading<3000) {
         printf("button 3\n");
         vTaskDelay(pdMS_TO_TICKS(250));
         adc_reading=4095;
