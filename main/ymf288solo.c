@@ -716,6 +716,7 @@ int S98_read(char* s98file) {
                     loop_count = 1;
                     f_flag = false;
 					s_flag = true;
+					reset();
         			vTaskDelay(pdMS_TO_TICKS(650));
 					break;
                 } else if (p_flag == true){ // 曲の先頭に戻る
