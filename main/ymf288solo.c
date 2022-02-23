@@ -723,8 +723,8 @@ int S98_read(char* s98file) {
 					reset();
 					vTaskDelay(pdMS_TO_TICKS(650));
                     fseek(fp, data_offset, SEEK_SET);
-					loop_count = 3;
-					printf("loop count: 3\n");
+					loop_count = 9999;
+					printf("loop count: %d\n",loop_count);
 					printf("restart music.\n");
 					p_flag = false;
                 } else if (r_flag == true){
